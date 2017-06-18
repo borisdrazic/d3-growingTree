@@ -1,0 +1,116 @@
+$color0 : #96858F;
+$color1 : #6D7993;
+$color2 : #9099A2;
+$color3 : #D5D5D5;
+
+
+@import "rectSizer";
+@import "arcSizer";
+@import "rangeSizer";
+@import "colorPicker";
+
+body {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	background-color: $color3;
+	user-select: none;
+}
+
+svg text {
+	cursor: default;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.mainWrapper {
+	display: grid;
+  	grid-template-columns: 1300px 565px;
+  	grid-gap: 10px;
+  	background-color: $color3;
+  	margin: auto;
+  	margin-top: 80px;
+  	width: 1875px;
+
+  	.box {
+  		padding: 20px;
+	  	background-color: $color2;
+	  	border-radius: 5px;
+	  	
+	  	&.side {
+	  		@import "scrollBar";
+    		.scrollable {
+    			position: relative;
+    			height: 840px;
+    			width: 537px;
+    			display: grid;
+	  			grid-gap: 10px;
+    			overflow-y: scroll;
+
+    			.panel {
+    				position: relative;
+    				height: 370px;
+		  			width: 467px;		
+		  			padding: 20px;  	
+		  			display: grid;
+		  			grid-template-columns: 250px 250px;
+		  			background-color: $color3;
+					border-radius: 5px;
+		  			
+		  			svg {
+	    				&.arcSizer {
+		  					margin-left: -9px;
+		  				}
+		  			}
+
+		  			.level {
+		  				position: absolute;
+		  				top: 200px;
+		  				left: 340px;
+		  				font-size: 20pt;
+		  				font-weight: bold;
+		  				color: $color1;
+		  			}
+		  		}
+    		}
+
+    		.levelControl {
+    			circle {
+    				fill: $color3;
+    				cursor: pointer;
+
+    				&:hover ~ line {
+    					stroke: lighten($color1, 10%);
+    				}
+
+    				&.disabled {
+    					fill: $color1;
+    					cursor: default;
+    					pointer-events: none;
+    				}
+
+    				&.disabled ~ line {
+    					stroke: lighten($color1, 10%);
+    				}
+    			}
+
+    			
+
+    			line {
+    				transition: stroke 0.5s ease;
+    				stroke-width: 7px;
+    				stroke: $color1;
+    				pointer-events: none;
+    			}
+
+    			text {
+    				text-anchor: middle;
+    				font-size: 20pt;
+		  			font-weight: bold;
+		  			fill: $color3;
+    			}
+    		}
+	  	}
+	}
+}
+

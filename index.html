@@ -2,19 +2,43 @@
 <html>
 <head>
 	<title>Page Title</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	
 </head>
 
 <body>
-
-	<div id="chart">
-		<svg height="1000px" width="1000px">
-		</svg>
+	<div class="mainWrapper">
+		<div class="box">
+			<svg id="tree" height="900" width="1300">
+			</svg>
+		</div>
+		<div class="box side">
+			<div class="scrollable">
+			</div>
+			<div class="levelControl">
+				<svg height="100" width="500">
+					<g transform="translate(190, 60)">
+						<circle id="removeLevelButton" cx="0" cy="0" r="20"></circle>
+						<line x1="-12" y1="0" x2="12" y2=""></line>
+					</g>
+					<text x="270" y="70">Level</text>
+					<g transform="translate(350, 60)">
+						<circle id="addLevelButton" cx="0" cy="0" r="20"></circle>
+						<line x1="0" y1="-12" x2="0" y2="12"></line>
+						<line x1="-12" y1="0" x2="12" y2=""></line>
+					</g>
+				</svg>
+			</div>
+		</div>
 	</div>
-	
 
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="js/lib/d3-hsv.js"></script>
+	<script type="text/javascript" src="js/rectSizer.js"></script>
+	<script type="text/javascript" src="js/arcSizer.js"></script>
+	<script type="text/javascript" src="js/rangeSizer.js"></script>
+	<script type="text/javascript" src="js/colorPicker.js"></script>
+	<script type="text/javascript" src="js/tree.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

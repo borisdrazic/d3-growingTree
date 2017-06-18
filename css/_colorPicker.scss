@@ -1,0 +1,47 @@
+$padding: 15px;
+
+div.colorPicker {
+	position: relative;
+	.svDiv {
+		position:absolute;
+		
+		canvas {
+			position: absolute;
+			top: $padding;
+			left: $padding;
+		}
+
+		svg {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	}
+	
+	.hDiv {
+		position:absolute;
+		top: 110px;
+		
+		canvas {
+			position: absolute;
+			top: $padding;
+			left: $padding;
+			width : 200px;
+			height: 8px;
+			border-radius: 25px;
+		}
+
+		svg {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	}
+
+	circle.picker {
+		cursor: pointer;
+		stroke-width: 2;
+		stroke: white;
+	}
+}
+

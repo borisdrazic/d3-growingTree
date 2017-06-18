@@ -1,0 +1,45 @@
+$tree-color: $color0;
+$selected-branch-color: $color1;
+$hover-color: lighten($color1, 20%);
+
+svg.rangeSizer {
+	line {
+		transition: stroke 0.3s ease;
+		stroke : $tree-color;
+
+		&.trunk {
+			stroke-width: 20;	
+		}
+
+		&.branch {
+			stroke-width: 10;
+			stroke-linecap: round;
+			cursor: pointer; 
+
+			&.min {
+				&:hover {
+					stroke: $hover-color;
+				}
+			}
+
+			&.max {
+				&:hover {
+					stroke: $hover-color;
+				}
+			}
+		}
+
+		&.selected {
+			stroke : $selected-branch-color;
+		}
+	}
+
+	path {
+		fill : $tree-color;
+	}
+
+	svg {
+	  	border-radius: 5px;
+	}
+}
+

@@ -1,0 +1,41 @@
+svg.arcSizer {
+	.handle {
+		fill: $color3;
+	  	stroke: $color1;
+	  	stroke-width: 2px;
+	  	transition: stroke 0.5s;
+
+	  	&:hover {
+			stroke: lighten($color1, 20%);
+		}
+	}
+
+	.arc {
+		fill: $color0;
+	}
+
+	.smallArc {
+		stroke: $color1;
+		stroke-width: 1.5px;
+		fill: lighten($color1, 20%);
+	}
+
+	line {
+		stroke-width: 1.5px;
+
+		&.line {
+			stroke: $color1;
+		}
+	}
+
+	polygon {
+		fill: $color1;
+	}
+
+	text {
+		text-anchor: middle;
+		font-size: 9pt;
+		fill: $color1;
+	}
+}
+

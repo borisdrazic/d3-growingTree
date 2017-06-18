@@ -1,0 +1,186 @@
+svg.rectSizer .handle {
+  fill: #D5D5D5;
+  stroke: #6D7993;
+  stroke-width: 2px;
+  transition: stroke 0.5s;
+  cursor: pointer; }
+  svg.rectSizer .handle:hover {
+    stroke: #a8afbe; }
+svg.rectSizer .sliderG polygon {
+  fill: #6D7993; }
+svg.rectSizer .rect {
+  stroke: #96858F;
+  fill: #96858F;
+  stroke-width: 1; }
+svg.rectSizer .leftVertical, svg.rectSizer .horizontal, svg.rectSizer .rightVertical, svg.rectSizer .topHorizontal, svg.rectSizer .vertical, svg.rectSizer .bottomHorizontal {
+  stroke: #6D7993;
+  stroke-width: 2px; }
+svg.rectSizer text {
+  fill: #6D7993;
+  font-size: 8pt; }
+  svg.rectSizer text.width {
+    text-anchor: middle;
+    alignment-baseline: middle; }
+svg.rectSizer rect.textRect {
+  fill: #D5D5D5; }
+
+svg.arcSizer .handle {
+  fill: #D5D5D5;
+  stroke: #6D7993;
+  stroke-width: 2px;
+  transition: stroke 0.5s; }
+  svg.arcSizer .handle:hover {
+    stroke: #a8afbe; }
+svg.arcSizer .arc {
+  fill: #96858F; }
+svg.arcSizer .smallArc {
+  stroke: #6D7993;
+  stroke-width: 1.5px;
+  fill: #a8afbe; }
+svg.arcSizer line {
+  stroke-width: 1.5px; }
+  svg.arcSizer line.line {
+    stroke: #6D7993; }
+svg.arcSizer polygon {
+  fill: #6D7993; }
+svg.arcSizer text {
+  text-anchor: middle;
+  font-size: 9pt;
+  fill: #6D7993; }
+
+svg.rangeSizer line {
+  transition: stroke 0.3s ease;
+  stroke: #96858F; }
+  svg.rangeSizer line.trunk {
+    stroke-width: 20; }
+  svg.rangeSizer line.branch {
+    stroke-width: 10;
+    stroke-linecap: round;
+    cursor: pointer; }
+    svg.rangeSizer line.branch.min:hover {
+      stroke: #a8afbe; }
+    svg.rangeSizer line.branch.max:hover {
+      stroke: #a8afbe; }
+  svg.rangeSizer line.selected {
+    stroke: #6D7993; }
+svg.rangeSizer path {
+  fill: #96858F; }
+svg.rangeSizer svg {
+  border-radius: 5px; }
+
+div.colorPicker {
+  position: relative; }
+  div.colorPicker .svDiv {
+    position: absolute; }
+    div.colorPicker .svDiv canvas {
+      position: absolute;
+      top: 15px;
+      left: 15px; }
+    div.colorPicker .svDiv svg {
+      position: absolute;
+      top: 0px;
+      left: 0px; }
+  div.colorPicker .hDiv {
+    position: absolute;
+    top: 110px; }
+    div.colorPicker .hDiv canvas {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 200px;
+      height: 8px;
+      border-radius: 25px; }
+    div.colorPicker .hDiv svg {
+      position: absolute;
+      top: 0px;
+      left: 0px; }
+  div.colorPicker circle.picker {
+    cursor: pointer;
+    stroke-width: 2;
+    stroke: white; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  background-color: #D5D5D5;
+  user-select: none; }
+
+svg text {
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.mainWrapper {
+  display: grid;
+  grid-template-columns: 1300px 565px;
+  grid-gap: 10px;
+  background-color: #D5D5D5;
+  margin: auto;
+  margin-top: 80px;
+  width: 1875px; }
+  .mainWrapper .box {
+    padding: 20px;
+    background-color: #9099A2;
+    border-radius: 5px; }
+    .mainWrapper .box.side ::-webkit-scrollbar {
+      width: 12px; }
+    .mainWrapper .box.side ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      -webkit-border-radius: 10px;
+      border-radius: 10px; }
+    .mainWrapper .box.side ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: #bcbcbc;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
+    .mainWrapper .box.side ::-webkit-scrollbar-thumb:window-inactive {
+      background: #a2a2a2; }
+    .mainWrapper .box.side .scrollable {
+      position: relative;
+      height: 840px;
+      width: 537px;
+      display: grid;
+      grid-gap: 10px;
+      overflow-y: scroll; }
+      .mainWrapper .box.side .scrollable .panel {
+        position: relative;
+        height: 370px;
+        width: 467px;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 250px 250px;
+        background-color: #D5D5D5;
+        border-radius: 5px; }
+        .mainWrapper .box.side .scrollable .panel svg.arcSizer {
+          margin-left: -9px; }
+        .mainWrapper .box.side .scrollable .panel .level {
+          position: absolute;
+          top: 200px;
+          left: 340px;
+          font-size: 20pt;
+          font-weight: bold;
+          color: #6D7993; }
+    .mainWrapper .box.side .levelControl circle {
+      fill: #D5D5D5;
+      cursor: pointer; }
+      .mainWrapper .box.side .levelControl circle:hover ~ line {
+        stroke: #8a94a9; }
+      .mainWrapper .box.side .levelControl circle.disabled {
+        fill: #6D7993;
+        cursor: default;
+        pointer-events: none; }
+      .mainWrapper .box.side .levelControl circle.disabled ~ line {
+        stroke: #8a94a9; }
+    .mainWrapper .box.side .levelControl line {
+      transition: stroke 0.5s ease;
+      stroke-width: 7px;
+      stroke: #6D7993;
+      pointer-events: none; }
+    .mainWrapper .box.side .levelControl text {
+      text-anchor: middle;
+      font-size: 20pt;
+      font-weight: bold;
+      fill: #D5D5D5; }
+
+/*# sourceMappingURL=main.css.map */
