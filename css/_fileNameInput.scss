@@ -1,0 +1,142 @@
+$fileTextColor: darken( $color1, 20%);
+$labelTextColor: $color1;
+$lineColor1: lighten($color1, 20%);
+$lineColor2: $color0;
+
+.fileNameInput {
+    position: absolute;
+    top: 47px;
+    left: -4px;
+    z-index: 1;
+    display: inline-block;
+    margin: 1em;
+    max-width: 350px;
+    width: calc(100% - 2em);
+    vertical-align: top;
+    overflow: hidden;
+
+    *, *:after, *:before {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+
+.input__field {
+    position: relative;
+    display: block;
+    float: right;
+    width: 100%;
+    padding: 0.85em 0.15em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: $fileTextColor;
+    font-weight: bold;
+    -webkit-appearance: none; /* for box shadows to show on iOS */    
+}
+
+.input__field:focus {
+    outline: none;
+}
+
+.input__field:focus + .input__label::after,
+.input--filled .input__label::after {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.input__field:focus + .input__label .input__label-content,
+.input--filled .input__label-content {
+    -webkit-animation: anim-1 0.3s forwards;
+    animation: anim-1 0.3s forwards;
+}
+
+.input__label {
+    position: absolute;
+    display: inline-block;
+    float: right;
+    bottom: 0;
+    left: 0;
+    padding: 0 0.25em;
+    width: 100%;
+    height: calc(100% - 1em);
+    color: $labelTextColor;
+    font-weight: bold;
+    font-size: 70.25%;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.input__label::before, .input__label::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 10px);
+    border-bottom: 1px solid $lineColor1;
+}
+
+.input__label::after {
+    margin-top: 2px;
+    border-bottom: 4px solid;
+    border-color: $lineColor2;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+
+
+.input__label-content {
+    position: absolute;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+
+@-webkit-keyframes anim-1 {
+    50% {
+        opacity: 0;
+        -webkit-transform: translate3d(1em, 0, 0);
+        transform: translate3d(1em, 0, 0);
+    }
+    51% {
+        opacity: 0;
+        -webkit-transform: translate3d(-1em, -40%, 0);
+        transform: translate3d(-1em, -40%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, -40%, 0);
+        transform: translate3d(0, -40%, 0);
+    }
+}
+
+@keyframes anim-1 {
+    50% {
+        opacity: 0;
+        -webkit-transform: translate3d(1em, 0, 0);
+        transform: translate3d(1em, 0, 0);
+    }
+    51% {
+        opacity: 0;
+        -webkit-transform: translate3d(-1em, -40%, 0);
+        transform: translate3d(-1em, -40%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, -40%, 0);
+        transform: translate3d(0, -40%, 0);
+    }
+}

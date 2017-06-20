@@ -1,8 +1,8 @@
-$tree-color: $color0;
-$selected-branch-color: $color1;
-$hover-color: lighten($color1, 20%);
-
 svg.rangeSizer {
+	$tree-color: $color0;
+	$selected-branch-color: $color1;
+	$hover-color: lighten($color1, 20%);
+
 	line {
 		transition: stroke 0.3s ease;
 		stroke : $tree-color;

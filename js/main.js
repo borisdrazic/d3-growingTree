@@ -20,7 +20,7 @@
 	 * Adds controls for a level of the tree to side box.
 	 * Adds level to tree.
 	 */
-	function addLevel() {
+	function addLevel(addToTree) {
 		var panel,
 			i;
 
@@ -62,7 +62,10 @@
 			.attr("height", 180);
 		new RangeSizer("svg#rangeSizer-" + i, i, tree.getLevelNumberBranches(i), tree.numberBranchesChanged);
 
-		tree.addLevel();
+		if (addToTree) {
+			tree.addLevel();
+		}
+		
 	}
 
 	/** 
@@ -81,7 +84,7 @@
 	// hook up handlers for add/remove level buttons
 	d3.select("#addLevelButton")
 		.on("click", function() {
-			addLevel();
+			addLevel(true);
 		});
 
 	d3.select("#removeLevelButton")
@@ -91,6 +94,59 @@
 
 	// create the tree with just level 0 (trunk)
 	tree = new Tree("svg#tree");	
-	addLevel();
-	
+	addLevel(true);
+
+
+
+	var fileUpload = document.getElementById("fileUpload");
+	fileUpload.addEventListener("change", function(e) {
+		var reader = new FileReader(),
+			configuration;
+
+		if (this.files && fileUpload.files.length > 0) {
+			d3.select("#fileUpload + label div.fileName")
+				.text(e.target.value.split( '\\' ).pop());
+			reader.onload = (function(theFile) {
+		        return function(e) {
+		        	configuration = JSON.parse(e.target.result);
+		        	while(noLevels > 0) {
+		        		removeLevel();
+		        	}
+		        	tree = new Tree("svg#tree");
+		        	
+		        	tree.setConfiguration(configuration);
+		        	while(noLevels < configuration.noLevels) {
+		        		addLevel(false);
+		        	}
+		        };
+		    })(fileUpload.files[0]);
+  			reader.readAsText(fileUpload.files[0]);
+		}			
+	});
+
+	d3.select("#fileSaveButton").on("click", function() {
+		var fileName = document.getElementById("fileNameTextInput").value;
+		if (fileName.length === 0) {
+			fileName = "tree.json";
+		} else {
+			var parts = fileName.split(".");
+			if (parts[parts.length - 1] !== "json") {
+				fileName += ".json";
+			}
+		}
+
+		//saveAS is from fileSaver.min.js
+	  	saveAs(new Blob([JSON.stringify(tree.getConfiguration())], {type: "text/plain;charset=utf-8"}), fileName);
+	});
+
+	var inputEl = document.getElementById("fileNameTextInput");
+	inputEl.addEventListener( 'focus', onInputFocus );
+	inputEl.addEventListener( 'blur', onInputBlur );
+	function onInputFocus( ev ) {
+		d3.select(ev.target.parentNode).classed("input--filled", true);
+	}
+
+	function onInputBlur( ev ) {
+		d3.select(ev.target.parentNode).classed("input--filled", ev.target.value.trim() !== '');
+	}
 })();

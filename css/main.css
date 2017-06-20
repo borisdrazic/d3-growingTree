@@ -99,6 +99,163 @@ div.colorPicker {
     stroke-width: 2;
     stroke: white; }
 
+.fileButton .inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+.fileButton label {
+  max-width: 80%;
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 10px 20px;
+  color: #6D7993; }
+  .fileButton label .fileName {
+    width: 100px; }
+  .fileButton label:hover {
+    color: #96858F; }
+    .fileButton label:hover figure {
+      background-color: #96858F; }
+  .fileButton label figure {
+    transition: background-color 0.3s ease;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #6D7993;
+    display: block;
+    padding: 10px;
+    margin: 0 auto 10px; }
+    .fileButton label figure svg {
+      width: 100%;
+      height: 100%;
+      fill: #f1e5e6;
+      vertical-align: middle;
+      margin-top: -0.25em;
+      margin-right: 0.25em; }
+
+.fileNameInput {
+  position: absolute;
+  top: 47px;
+  left: -4px;
+  z-index: 1;
+  display: inline-block;
+  margin: 1em;
+  max-width: 350px;
+  width: calc(100% - 2em);
+  vertical-align: top;
+  overflow: hidden; }
+  .fileNameInput *, .fileNameInput *:after, .fileNameInput *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+
+.input__field {
+  position: relative;
+  display: block;
+  float: right;
+  width: 100%;
+  padding: 0.85em 0.15em;
+  margin-top: 1em;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #414959;
+  font-weight: bold;
+  -webkit-appearance: none;
+  /* for box shadows to show on iOS */ }
+
+.input__field:focus {
+  outline: none; }
+
+.input__field:focus + .input__label::after,
+.input--filled .input__label::after {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.input__field:focus + .input__label .input__label-content,
+.input--filled .input__label-content {
+  -webkit-animation: anim-1 0.3s forwards;
+  animation: anim-1 0.3s forwards; }
+
+.input__label {
+  position: absolute;
+  display: inline-block;
+  float: right;
+  bottom: 0;
+  left: 0;
+  padding: 0 0.25em;
+  width: 100%;
+  height: calc(100% - 1em);
+  color: #6D7993;
+  font-weight: bold;
+  font-size: 70.25%;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none; }
+
+.input__label::before, .input__label::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 10px);
+  border-bottom: 1px solid #a8afbe; }
+
+.input__label::after {
+  margin-top: 2px;
+  border-bottom: 4px solid;
+  border-color: #96858F;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s; }
+
+.input__label-content {
+  position: absolute;
+  display: block;
+  padding: 1.6em 0;
+  width: 100%; }
+
+@-webkit-keyframes anim-1 {
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0); }
+  51% {
+    opacity: 0;
+    -webkit-transform: translate3d(-1em, -40%, 0);
+    transform: translate3d(-1em, -40%, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, -40%, 0); } }
+@keyframes anim-1 {
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0); }
+  51% {
+    opacity: 0;
+    -webkit-transform: translate3d(-1em, -40%, 0);
+    transform: translate3d(-1em, -40%, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, -40%, 0); } }
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   background-color: #D5D5D5;
@@ -120,9 +277,17 @@ svg text {
   margin-top: 80px;
   width: 1875px; }
   .mainWrapper .box {
+    position: relative;
     padding: 20px;
     background-color: #9099A2;
     border-radius: 5px; }
+    .mainWrapper .box .config {
+      position: absolute;
+      width: 140px;
+      height: 80px;
+      background-color: #D5D5D5; }
+      .mainWrapper .box .config.right {
+        right: 20px; }
     .mainWrapper .box.side ::-webkit-scrollbar {
       width: 12px; }
     .mainWrapper .box.side ::-webkit-scrollbar-track {

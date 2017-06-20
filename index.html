@@ -3,13 +3,49 @@
 <head>
 	<title>Page Title</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script src="https://d3js.org/d3.v4.min.js"></script>
+	
 	
 </head>
 
 <body>
+	
 	<div class="mainWrapper">
 		<div class="box">
+			<div class="box config" id="fileDiv">
+				<div class="fileButton">
+					<input type="file" name="fileUpload" id="fileUpload" class="inputfile"/>
+					<label for="fileUpload">
+						<figure>
+							<svg  width="20" height="20">
+								<g transform="translate(0.43, 18) scale(0.0115, -0.0115)">
+									<path d="M1280 64q0 26 -19 45t-45 19t-45 -19t-19 -45t19 -45t45 -19t45 19t19 45zM1536 64q0 26 -19 45t-45 19t-45 -19t-19 -45t19 -45t45 -19t45 19t19 45zM1664 288v-320q0 -40 -28 -68t-68 -28h-1472q-40 0 -68 28t-28 68v320q0 40 28 68t68 28h427q21 -56 70.5 -92 t110.5 -36h256q61 0 110.5 36t70.5 92h427q40 0 68 -28t28 -68zM1339 936q-17 -40 -59 -40h-256v-448q0 -26 -19 -45t-45 -19h-256q-26 0 -45 19t-19 45v448h-256q-42 0 -59 40q-17 39 14 69l448 448q18 19 45 19t45 -19l448 -448q31 -30 14 -69z"></path>
+								</g>
+							</svg>
+						</figure>
+						<div class="fileName">Choose a file&hellip;</div>
+					</label>
+				</div>
+			</div>
+			<div class="box config right" id="fileDiv">
+				<div class="fileButton" id="fileSaveButton">
+					<label>
+						<figure>
+							<svg  width="20" height="20">
+								<g transform="translate(0.43, 19) scale(0.0115, -0.0115)">
+									<path d="M1280 192q0 26 -19 45t-45 19t-45 -19t-19 -45t19 -45t45 -19t45 19t19 45zM1536 192q0 26 -19 45t-45 19t-45 -19t-19 -45t19 -45t45 -19t45 19t19 45zM1664 416v-320q0 -40 -28 -68t-68 -28h-1472q-40 0 -68 28t-28 68v320q0 40 28 68t68 28h465l135 -136 q58 -56 136 -56t136 56l136 136h464q40 0 68 -28t28 -68zM1339 985q17 -41 -14 -70l-448 -448q-18 -19 -45 -19t-45 19l-448 448q-31 29 -14 70q17 39 59 39h256v448q0 26 19 45t45 19h256q26 0 45 -19t19 -45v-448h256q42 0 59 -39z"></path>
+								</g>
+							</svg>
+						</figure>
+						<div class="fileName"></div>
+					</label>
+				</div>
+				<div class="fileNameInput">
+					<input class="input__field" type="text" id="fileNameTextInput" />
+					<label class="input__label" for="fileNameTextInput">
+						<span class="input__label-content ">File name</span>
+					</label>
+				</div>
+			</div>
 			<svg id="tree" height="900" width="1300">
 			</svg>
 		</div>
@@ -33,7 +69,9 @@
 		</div>
 	</div>
 
+	<script type="text/javascript" src="js/lib/d3.v4.min.js"></script>
 	<script type="text/javascript" src="js/lib/d3-hsv.js"></script>
+	<script type="text/javascript" src="js/lib/fileSaver.min.js"></script>
 	<script type="text/javascript" src="js/rectSizer.js"></script>
 	<script type="text/javascript" src="js/arcSizer.js"></script>
 	<script type="text/javascript" src="js/rangeSizer.js"></script>

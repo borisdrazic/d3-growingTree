@@ -7,6 +7,15 @@ function Tree(svgSelector) {
 	function getRandomInt(d) {
   		return Math.floor(Math.random() * (d[1]- d[0] + 1)) + d[0];
 	}
+
+	function rgb2hex(rgb){
+ 		
+ 		return "#" +
+  			("0" + parseInt(rgb.r,10).toString(16)).slice(-2) +
+  			("0" + parseInt(rgb.g,10).toString(16)).slice(-2) +
+  			("0" + parseInt(rgb.b,10).toString(16)).slice(-2);
+	}
+
 	var maxLevels = 11, // maximum supported number of levels
 		maxLevelsToAnimateLength = 7, // if tree has less than this number of levels animate length as user dragges, otherwise animate on drag end
 		maxLevelsToAnimateAngle = 7, // if tree has less than this number of levels animate angle as user dragges, otherwise animate on drag end
@@ -184,10 +193,7 @@ function Tree(svgSelector) {
 		levelNumberBranchesRangeScale.range(levelNumberBranchesRange);
 
 		// recompute and redraw tree
-		firstLine.children = [];
-		lines = [firstLine];
-		branchLine(lines[0]);
-		update(lines);
+		reCreate();
 	}
 	
 	/**
@@ -397,12 +403,26 @@ function Tree(svgSelector) {
 					});
 	}
 
-	// create the tree
-	firstLine.children = [];
-	lines = [firstLine];
-	update(lines);
+	/**
+	 * Create the tree with just the trunk.
+	 */
+	function create() {
+		// create the tree
+		firstLine.children = [];
+		lines = [firstLine];
+		update(lines);
+	}
 
-
+	/** 
+	 * Recreate the entire tree.
+	 */
+	function reCreate() {
+		// recompute and redraw tree
+		firstLine.children = [];
+		lines = [firstLine];
+		branchLine(lines[0]);
+		update(lines);
+	}
 
 	// Functions to get propertis per level
 	this.getLevelThickness = function(level) {
@@ -467,4 +487,54 @@ function Tree(svgSelector) {
 	this.removeLevel = function() {
 		updateLinesRemoveLevel();
 	};
+
+	
+	this.getConfiguration = function() {
+		return {
+			noLevels : noLevels,
+			levelThicknessRange : levelThicknessRange,
+			levelLengthRange : levelLengthRange,
+			levelAngleRange : levelAngleRange,
+			levelNumberBranchesRange : levelNumberBranchesRange,
+			levelColorRange : levelColorRange.map(function(d) { return rgb2hex(d3.rgb(d)); })
+		};
+	};
+
+	this.setConfiguration = function(configuration) {
+		var i,
+			noExistingLines;
+		
+		levelThicknessRange = configuration.levelThicknessRange;
+		levelThicknessScale.range(levelThicknessRange);
+
+		levelLengthRange = configuration.levelLengthRange;
+		levelLengthRangeScale.range(levelLengthRange);
+
+		levelAngleRange = configuration.levelAngleRange;
+		levelAngleRangeScale.range(levelAngleRange);
+
+		levelNumberBranchesRange = configuration.levelNumberBranchesRange;
+		levelNumberBranchesRangeScale.range(levelNumberBranchesRange);
+
+		levelColorRange = configuration.levelColorRange;
+		levelColorScale.range(levelColorRange);
+
+		firstLine.y2 = +svg.attr("height") - levelLengthRange[0];
+		firstLine.length = levelLengthRange[0];
+
+		firstLine.children = [];
+		lines = [firstLine];
+		for (noLevels = 1; noLevels <= configuration.noLevels; ++noLevels) {
+			noExistingLines = lines.length;
+			for (i = 0; i < noExistingLines; ++i) {
+				if (lines[i].children.length === 0) {
+					branchLine(lines[i]);
+				}
+			}
+		}
+		noLevels--;
+		update(lines);
+	};
+
+	create();
 }

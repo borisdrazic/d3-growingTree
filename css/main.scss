@@ -8,6 +8,8 @@ $color3 : #D5D5D5;
 @import "arcSizer";
 @import "rangeSizer";
 @import "colorPicker";
+@import "fileButton";
+@import "fileNameInput";
 
 body {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -23,6 +25,7 @@ svg text {
 	user-select: none;
 }
 
+
 .mainWrapper {
 	display: grid;
   	grid-template-columns: 1300px 565px;
@@ -33,10 +36,22 @@ svg text {
   	width: 1875px;
 
   	.box {
+        position: relative;
   		padding: 20px;
 	  	background-color: $color2;
 	  	border-radius: 5px;
 	  	
+        .config {
+            position: absolute;
+            width: 140px;
+            height: 80px;
+            background-color: $color3;
+
+            &.right {
+                right: 20px;
+            }
+        }
+
 	  	&.side {
 	  		@import "scrollBar";
     		.scrollable {
